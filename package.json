@@ -11,12 +11,24 @@
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.0",
+<<<<<<< HEAD
     "expo": "~46.0.21",
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.9",
     "react-native-web": "~0.18.7"
+=======
+    "expo-constants": "~13.2.4",
+    "expo-status-bar": "~1.4.0",
+    "formik": "^2.4.5",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "react-native": "0.69.9",
+    "react-native-web": "~0.18.7",
+    "react-router-native": "^6.16.0",
+    "yup": "^1.2.0"
+>>>>>>> 2901c03 (exercise part2)
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -27,4 +39,7 @@
   },
   "private": true
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2901c03 (exercise part2)
