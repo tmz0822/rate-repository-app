@@ -1,5 +1,4 @@
 import { View, StyleSheet, Image } from 'react-native';
-
 import Text from './Text';
 import theme from '../theme';
 
@@ -7,7 +6,7 @@ const cardHeaderStyles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    paddingTop: 15,
+    paddingTop: 10,
     paddingLeft: 10,
   },
   avatar: {
@@ -19,6 +18,7 @@ const cardHeaderStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     marginLeft: 15,
+    flex: 1,
   },
   languageContainer: {
     backgroundColor: theme.colors.primary,
@@ -31,6 +31,9 @@ const cardHeaderStyles = StyleSheet.create({
   },
   language: {
     color: '#fff',
+  },
+  pressableText: {
+    textAlign: 'center',
   },
 });
 
@@ -60,6 +63,7 @@ const CardHeader = ({ item }) => {
 const cardFooterStyles = StyleSheet.create({
   container: {
     paddingTop: 8,
+    paddingBottom: 5,
   },
   infoContainer: {
     display: 'flex',
@@ -115,9 +119,9 @@ const itemStyle = StyleSheet.create({
 
 const RepositoryItem = ({ item }) => {
   return (
-    <View style={itemStyle.container}>
-      <CardHeader item={item} />
-      <CardFooter item={item} />
+    <View testID='repositoryItem' style={itemStyle.container}>
+      <CardHeader testID='cardHeader' item={item} />
+      <CardFooter testID='cardFooter' item={item} />
     </View>
   );
 };

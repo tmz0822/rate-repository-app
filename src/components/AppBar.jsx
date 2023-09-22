@@ -3,10 +3,9 @@ import Constants from 'expo-constants';
 import AppBarTab from './AppBarTab';
 import theme from '../theme';
 import { useApolloClient, useQuery } from '@apollo/client';
-import { CURRENT_USER } from '../graphql/queries';
+import { GET_CURRENT_USER } from '../graphql/queries';
 import useAuthStorage from '../hooks/useAuthStorage';
 import Text from './Text';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-native';
 
 const styles = StyleSheet.create({
@@ -25,11 +24,11 @@ const AppBar = () => {
   const apolloClient = useApolloClient();
   const authStorage = useAuthStorage();
   let currentUser;
-  const result = useQuery(CURRENT_USER);
+  const result = useQuery(GET_CURRENT_USER);
   const navigate = useNavigate();
 
   if (result.loading) {
-    console.log('loading CURRENT_USER query');
+    console.log('loading GET_CURRENT_USER query');
     return <Text>loading user...</Text>;
   } else {
     currentUser = result.data.me;
@@ -43,17 +42,22 @@ const AppBar = () => {
     navigate('/signin');
   };
 
-  console.log(currentUser);
-
   return (
     <View style={styles.container}>
       <ScrollView horizontal style={styles.scrollView}>
         <AppBarTab to='/' label='Repositories' />
 
         {!currentUser ? (
-          <AppBarTab to='/signin' label='Sign in' />
+          <>
+            <AppBarTab to='/signin' label='Sign in' />
+            <AppBarTab to='/signup' label='Sign up' />
+          </>
         ) : (
-          <AppBarTab label='Sign out' onPress={handleLogout} />
+          <>
+            <AppBarTab to='/review' label='Create a review' />
+            <AppBarTab to='/myreview' label='My reviews' />
+            <AppBarTab label='Sign out' onPress={handleLogout} />
+          </>
         )}
       </ScrollView>
     </View>

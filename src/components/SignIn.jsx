@@ -49,18 +49,18 @@ const initialValues = {
   password: '',
 };
 
-const SignInForm = ({ onSubmit, errors }) => {
+export const SignInForm = ({ onSubmit }) => {
   return (
     <View style={styles.container}>
       <FormikTextInput
         name='username'
-        style={[styles.textInput, errors.username && styles.errorTextInput]}
+        style={styles.textInput}
         placeholder='Username'
       />
 
       <FormikTextInput
         name='password'
-        style={[styles.textInput, errors.password && styles.errorTextInput]}
+        style={styles.textInput}
         placeholder='Password'
         secureTextEntry
       />
@@ -80,7 +80,7 @@ const validationSchema = yup.object().shape({
 });
 
 const SignIn = () => {
-  const [signIn] = useSignIn();
+  const [signIn] = useSignIn(); // side effect
   const navigate = useNavigate();
 
   const onSubmit = async (values) => {
@@ -98,15 +98,18 @@ const SignIn = () => {
     }
   };
 
+  return <SignInContainer onSubmit={onSubmit} />;
+};
+
+// "Pure" code (Extract pure code into another component for testing)
+export const SignInContainer = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
-      {({ handleSubmit, errors }) => (
-        <SignInForm onSubmit={handleSubmit} errors={errors} />
-      )}
+      {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
     </Formik>
   );
 };
